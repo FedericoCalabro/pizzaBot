@@ -27,7 +27,7 @@ fvm flutter pub run build_runner watch --delete-conflicting-outputs
 ```
 
 ```bash
-fvm flutter clean && fvm flutter build web --base-href "/gestione-consensi/" --web-renderer html
+fvm flutter clean && fvm flutter build apk
 ```
 
 ```bash
