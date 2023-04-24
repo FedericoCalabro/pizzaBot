@@ -27,9 +27,5 @@ fvm flutter pub run build_runner watch --delete-conflicting-outputs
 ```
 
 ```bash
-fvm flutter clean && fvm flutter build web --base-href "/gestione-consensi/" --web-renderer html
-```
-
-```bash
 fvm flutter run -d chrome --web-renderer html --web-port 4200 --web-browser-flag --disable-web-security
 ```

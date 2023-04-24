@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:chatbot/core/logging.dart';
+import 'package:chatbot/core/interactions.dart';
 import 'package:chatbot/pizzabot/pizza_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

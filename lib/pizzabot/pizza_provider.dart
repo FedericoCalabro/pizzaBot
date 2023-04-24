@@ -17,7 +17,7 @@ final pizzaRepositoryProvider = Provider(
 );
 
 final pizzaDataNotifierProvider =
-    StateNotifierProvider.autoDispose<PizzaDataNotifier, PizzaDataState>(
+    StateNotifierProvider<PizzaDataNotifier, PizzaDataState>(
   (ref) => PizzaDataNotifier(
     ref.watch(pizzaRepositoryProvider),
   ),

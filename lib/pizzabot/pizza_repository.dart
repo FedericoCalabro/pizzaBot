@@ -19,8 +19,6 @@ class PizzaRepository {
       return left(response['answer']['content']);
     } on CustomException catch (e) {
       return right(e);
-    } catch (e) {
-      return right(CustomException("Errore inaspettato"));
     }
   }
 }

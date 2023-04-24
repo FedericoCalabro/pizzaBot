@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:chatbot/core/dio_provider.dart';
 import 'package:dio/dio.dart';
 import '../core/custom_exception.dart';
 
@@ -19,6 +20,7 @@ class PizzaService {
       final response = await _dio.post(
         URL,
         data: data,
+        cancelToken: globalCancelToken,
         options: Options(
           headers: headers,
         ),
@@ -30,10 +32,9 @@ class PizzaService {
           e.type == DioErrorType.connectionError) {
         throw CustomException("Impossibile connettersi al server");
       }
-      throw CustomException(e.message ?? "Errore generico");
+      throw CustomException(e.message ?? "Errore di connessione");
     } catch (e) {
-      log(e.toString());
-      rethrow;
+      throw CustomException("Errore generico");
     }
   }
 }
