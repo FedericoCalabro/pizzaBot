@@ -82,41 +82,45 @@ class _HomepageScreenState extends ConsumerState<HomepageScreen> {
 
   Widget getMic(BoxConstraints constraint) {
     final stt = ref.watch(sttProvider);
-    return Container(
-      color: Colors.green[100],
-      width: constraint.maxWidth,
-      height: (constraint.maxHeight / 2) - (widget.logHeight / 2),
-      child: IconButton(
-        onPressed: () {
-          if (stt.isNotListening) {
-            stt.listen(
-              onResult: _onSpeechResult,
-              partialResults: false,
-            );
-          }
-        },
-        icon: const Icon(Icons.mic),
-        iconSize: constraint.maxWidth,
+    return InkWell(
+      child: Container(
+        color: Colors.green[100],
+        width: constraint.maxWidth,
+        height: (constraint.maxHeight / 2) - (widget.logHeight / 2),
+        child: Icon(
+          Icons.mic,
+          size: constraint.maxWidth,
+        ),
       ),
+      onTap: () {
+        if (stt.isNotListening) {
+          stt.listen(
+            onResult: _onSpeechResult,
+            partialResults: false,
+          );
+        }
+      },
     );
   }
 
   Widget getStop(BoxConstraints constraint) {
-    return Container(
-      color: Colors.red[100],
-      width: constraint.maxWidth,
-      height: (constraint.maxHeight / 2) - (widget.logHeight / 2),
-      child: IconButton(
-        onPressed: () {
-          globalCancelToken.cancel();
-          globalCancelToken = CancelToken();
-          ref.read(audioPlayerProvider).stop();
-          ref.read(ttsProvider).stop();
-          ref.read(sttProvider).cancel();
-        },
-        icon: const Icon(Icons.stop),
-        iconSize: constraint.maxWidth,
+    return InkWell(
+      child: Container(
+        color: Colors.red[100],
+        width: constraint.maxWidth,
+        height: (constraint.maxHeight / 2) - (widget.logHeight / 2),
+        child: Icon(
+          Icons.stop,
+          size: constraint.maxWidth,
+        ),
       ),
+      onTap: () {
+        globalCancelToken.cancel();
+        globalCancelToken = CancelToken();
+        ref.read(audioPlayerProvider).stop();
+        ref.read(ttsProvider).stop();
+        ref.read(sttProvider).cancel();
+      },
     );
   }
 
