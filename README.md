@@ -27,5 +27,5 @@ fvm flutter pub run build_runner watch --delete-conflicting-outputs
 ```
 
 ```bash
-fvm flutter run -d chrome --web-renderer html --web-port 4200 --web-browser-flag --disable-web-security
+fvm flutter clean && fvm flutter build apk
 ```
