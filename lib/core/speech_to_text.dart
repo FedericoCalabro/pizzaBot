@@ -1,11 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
-final sttProvider = Provider((ref) async {
-  final stt = SpeechToText();
-  await stt.initialize();
-  return stt;
-});
+final sttProvider = Provider(
+  (ref) {
+    final stt = SpeechToText();
+    stt.initialize();
+    return stt;
+  },
+);
 
 
   // Future<void> listen() async {

@@ -25,18 +25,8 @@ class PizzaDataNotifier extends StateNotifier<PizzaDataState> {
 
   Future<void> getAnswer(String question) async {
     state = const PizzaDataState.loadInProgress();
-    AssetsAudioPlayer player = AssetsAudioPlayer.newPlayer();
-
-    player.open(
-      Audio("assets/audios/loading.mp3"),
-      autoStart: true,
-      showNotification: false,
-      loopMode: LoopMode.playlist,
-    );
 
     final successOrFailure = await _pizzaRepository.getAnswer(question);
-
-    player.stop();
 
     state = successOrFailure.fold(
       (l) => PizzaDataState.loadSuccess(l),

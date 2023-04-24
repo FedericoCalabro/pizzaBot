@@ -25,7 +25,6 @@ class PizzaService {
           headers: headers,
         ),
       );
-      print(response.data);
       return response.data as Map<String, dynamic>;
     } on DioError catch (e) {
       if (e.type == DioErrorType.connectionTimeout ||

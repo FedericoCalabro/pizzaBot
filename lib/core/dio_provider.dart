@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final globalCancelToken = CancelToken();
+var globalCancelToken = CancelToken();
 
 final dioProvider = Provider(
   (ref) => Dio(
