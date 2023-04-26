@@ -35,7 +35,7 @@ class _HomepageScreenState extends ConsumerState<HomepageScreen> {
               autoStart: true,
               showNotification: false,
               loopMode: LoopMode.playlist,
-              volume: 0.8,
+              volume: 0.75,
             );
           },
           loadFailure: (error) {
@@ -82,6 +82,7 @@ class _HomepageScreenState extends ConsumerState<HomepageScreen> {
 
   Widget getMic(BoxConstraints constraint) {
     final stt = ref.watch(sttProvider);
+    final interactionNotifier = ref.watch(interactionsStateProvider.notifier);
     return InkWell(
       child: Container(
         color: Colors.green[100],
@@ -93,11 +94,15 @@ class _HomepageScreenState extends ConsumerState<HomepageScreen> {
         ),
       ),
       onTap: () {
-        if (stt.isNotListening) {
-          stt.listen(
-            onResult: _onSpeechResult,
-            partialResults: false,
-          );
+        if (stt.isAvailable) {
+          if (stt.isNotListening) {
+            stt.listen(
+              onResult: _onSpeechResult,
+              partialResults: false,
+            );
+          }
+        } else {
+          interactionNotifier.addInter("E: Errore con l'SST");
         }
       },
     );
