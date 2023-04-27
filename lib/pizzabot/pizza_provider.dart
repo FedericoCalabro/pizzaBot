@@ -4,6 +4,8 @@ import 'package:chatbot/pizzabot/pizza_repository.dart';
 import 'package:chatbot/pizzabot/pizza_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+final secretProvider = StateProvider((ref) => "padrone");
+
 final pizzaServiceProvider = Provider(
   (ref) => PizzaService(
     ref.watch(dioProvider),

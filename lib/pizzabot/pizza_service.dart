@@ -1,8 +1,7 @@
-import 'dart:developer';
-
+import 'package:chatbot/core/custom_exception.dart';
 import 'package:chatbot/core/dio_provider.dart';
 import 'package:dio/dio.dart';
-import '../core/custom_exception.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PizzaService {
   final Dio _dio;
@@ -11,8 +10,12 @@ class PizzaService {
 
   Future<Map<String, dynamic>> getAnswer(String question) async {
     const String URL = "https://www.pizzagpt.it/api/chat-completion";
+    final secret = (await SharedPreferences.getInstance()).getString("secret");
 
-    Map<String, dynamic> data = {"question": question, "secret": "padrone"};
+    Map<String, dynamic> data = {
+      "question": question,
+      "secret": secret,
+    };
 
     Map<String, dynamic> headers = {};
 

@@ -5,6 +5,7 @@ import 'package:chatbot/core/interactions.dart';
 import 'package:chatbot/core/speech_to_text.dart';
 import 'package:chatbot/core/text_to_speech.dart';
 import 'package:chatbot/pizzabot/pizza_provider.dart';
+import 'package:chatbot/screen/secret_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,7 +13,8 @@ import 'package:speech_to_text/speech_recognition_result.dart';
 
 class HomepageScreen extends ConsumerStatefulWidget {
   final double logHeight = 75;
-  const HomepageScreen({super.key});
+  int consecutiveStopTaps = 0;
+  HomepageScreen({super.key});
 
   @override
   ConsumerState<HomepageScreen> createState() => _HomepageScreenState();
@@ -67,11 +69,11 @@ class _HomepageScreenState extends ConsumerState<HomepageScreen> {
 
     return Scaffold(
       body: SafeArea(
-        child: LayoutBuilder(builder: (context, constraint) {
+        child: LayoutBuilder(builder: (layoutContext, constraint) {
           return Column(
             children: [
-              getMic(constraint),
-              getStop(constraint),
+              getMic(constraint, context),
+              getStop(constraint, context),
               getInteractions(constraint)
             ],
           );
@@ -80,7 +82,7 @@ class _HomepageScreenState extends ConsumerState<HomepageScreen> {
     );
   }
 
-  Widget getMic(BoxConstraints constraint) {
+  Widget getMic(BoxConstraints constraint, BuildContext context) {
     final stt = ref.watch(sttProvider);
     final interactionNotifier = ref.watch(interactionsStateProvider.notifier);
     return InkWell(
@@ -108,7 +110,7 @@ class _HomepageScreenState extends ConsumerState<HomepageScreen> {
     );
   }
 
-  Widget getStop(BoxConstraints constraint) {
+  Widget getStop(BoxConstraints constraint, BuildContext context) {
     return InkWell(
       child: Container(
         color: Colors.red[100],
@@ -120,6 +122,16 @@ class _HomepageScreenState extends ConsumerState<HomepageScreen> {
         ),
       ),
       onTap: () {
+        widget.consecutiveStopTaps += 1;
+        if (widget.consecutiveStopTaps >= 20) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SecretScreen(),
+            ),
+          );
+          return;
+        }
         globalCancelToken.cancel();
         globalCancelToken = CancelToken();
         ref.read(audioPlayerProvider).stop();

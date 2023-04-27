@@ -13,7 +13,7 @@ class PizzaRepository {
 
       if (response['description'] == 'error' ||
           response['answer'] == 'Invalid') {
-        throw CustomException("Qualcosa è andato storto");
+        throw CustomException("Errore, probabilmente il secret è cambiato");
       }
 
       return left(response['answer']['content']);
