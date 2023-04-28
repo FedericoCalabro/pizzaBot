@@ -24,9 +24,6 @@ class PizzaService {
         URL,
         data: data,
         cancelToken: globalCancelToken,
-        options: Options(
-          headers: headers,
-        ),
       );
       return response.data as Map<String, dynamic>;
     } on DioError catch (e) {
@@ -36,6 +33,27 @@ class PizzaService {
       }
       if (e.type == DioErrorType.cancel) {
         throw CustomException("Richiesta cancellata");
+      }
+      throw CustomException(e.message ?? "Errore di connessione");
+    } catch (e) {
+      throw CustomException("Errore generico");
+    }
+  }
+
+  Future<String> getSecret() async {
+    const String URL = "https://www.pizzagpt.it/_nuxt/index.0468b00e.js";
+
+    try {
+      final response = await _dio.get(
+        URL,
+        cancelToken: globalCancelToken,
+      );
+
+      return response.data as String;
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.connectionTimeout ||
+          e.type == DioErrorType.connectionError) {
+        throw CustomException("Impossibile connettersi al server");
       }
       throw CustomException(e.message ?? "Errore di connessione");
     } catch (e) {

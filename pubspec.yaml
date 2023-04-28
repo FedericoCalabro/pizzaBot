@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  puppeteer: ^2.24.0
   shared_preferences: ^2.1.0
   dio: ^5.1.1
   fpdart: ^0.5.0

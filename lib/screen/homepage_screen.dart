@@ -104,7 +104,10 @@ class _HomepageScreenState extends ConsumerState<HomepageScreen> {
             dataProvider.maybeWhen(
               loadInProgress: () async {
                 stopEverything();
-                await Future.delayed(const Duration(seconds: 2));
+                await Future.delayed(const Duration(
+                  seconds: 2,
+                  milliseconds: 500,
+                ));
                 stt.listen(
                   onResult: _onSpeechResult,
                   partialResults: false,
