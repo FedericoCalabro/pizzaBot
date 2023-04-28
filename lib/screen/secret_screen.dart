@@ -91,6 +91,7 @@ class _SecretScreenState extends ConsumerState<SecretScreen> {
           (l) {
             openSnackbar(context, "Secret = '${l}'");
             _secretController.text = l;
+            setState(() {});
           },
           (r) => openSnackbar(context, "Errore ${r.errorMessage}"),
         );
