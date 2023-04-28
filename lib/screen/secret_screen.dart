@@ -16,6 +16,7 @@ class _SecretScreenState extends ConsumerState<SecretScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Text("SETTINGS")),
       body: SafeArea(
         child: LayoutBuilder(builder: (layoutContext, constraint) {
           return Padding(
@@ -36,6 +37,16 @@ class _SecretScreenState extends ConsumerState<SecretScreen> {
                     final newSecret = widget._secretController.text;
                     (await SharedPreferences.getInstance())
                         .setString('secret', newSecret);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: const Text('Secret aggiornato'),
+                        action: SnackBarAction(
+                            label: "INDIETRO",
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            }),
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50)),

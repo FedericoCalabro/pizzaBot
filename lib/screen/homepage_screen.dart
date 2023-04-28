@@ -84,7 +84,9 @@ class _HomepageScreenState extends ConsumerState<HomepageScreen> {
 
   Widget getMic(BoxConstraints constraint, BuildContext context) {
     final stt = ref.watch(sttProvider);
+    final dataProvider = ref.watch(pizzaDataNotifierProvider);
     final interactionNotifier = ref.watch(interactionsStateProvider.notifier);
+    final interactions = ref.watch(interactionsStateProvider);
     return InkWell(
       child: Container(
         color: Colors.green[100],
@@ -95,12 +97,25 @@ class _HomepageScreenState extends ConsumerState<HomepageScreen> {
           size: constraint.maxWidth,
         ),
       ),
-      onTap: () {
+      onTap: () async {
+        widget.consecutiveStopTaps = 0;
         if (stt.isAvailable) {
           if (stt.isNotListening) {
-            stt.listen(
-              onResult: _onSpeechResult,
-              partialResults: false,
+            dataProvider.maybeWhen(
+              loadInProgress: () async {
+                stopEverything();
+                await Future.delayed(const Duration(seconds: 2));
+                stt.listen(
+                  onResult: _onSpeechResult,
+                  partialResults: false,
+                );
+              },
+              orElse: () async {
+                stt.listen(
+                  onResult: _onSpeechResult,
+                  partialResults: false,
+                );
+              },
             );
           }
         } else {
@@ -132,11 +147,7 @@ class _HomepageScreenState extends ConsumerState<HomepageScreen> {
           );
           return;
         }
-        globalCancelToken.cancel();
-        globalCancelToken = CancelToken();
-        ref.read(audioPlayerProvider).stop();
-        ref.read(ttsProvider).stop();
-        ref.read(sttProvider).cancel();
+        stopEverything();
       },
     );
   }
@@ -162,5 +173,13 @@ class _HomepageScreenState extends ConsumerState<HomepageScreen> {
   void _onSpeechResult(SpeechRecognitionResult result) async {
     final recWords = result.recognizedWords;
     ref.read(interactionsStateProvider.notifier).addInter("Q: $recWords");
+  }
+
+  void stopEverything() {
+    globalCancelToken.cancel();
+    globalCancelToken = CancelToken();
+    ref.read(audioPlayerProvider).stop();
+    ref.read(ttsProvider).stop();
+    ref.read(sttProvider).cancel();
   }
 }

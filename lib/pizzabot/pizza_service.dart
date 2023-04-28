@@ -34,6 +34,9 @@ class PizzaService {
           e.type == DioErrorType.connectionError) {
         throw CustomException("Impossibile connettersi al server");
       }
+      if (e.type == DioErrorType.cancel) {
+        throw CustomException("Richiesta cancellata");
+      }
       throw CustomException(e.message ?? "Errore di connessione");
     } catch (e) {
       throw CustomException("Errore generico");
