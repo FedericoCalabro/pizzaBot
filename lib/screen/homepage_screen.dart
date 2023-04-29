@@ -142,6 +142,7 @@ class _HomepageScreenState extends ConsumerState<HomepageScreen> {
       onTap: () {
         widget.consecutiveStopTaps += 1;
         if (widget.consecutiveStopTaps >= 20) {
+          widget.consecutiveStopTaps = 0;
           Navigator.push(
             context,
             MaterialPageRoute(
