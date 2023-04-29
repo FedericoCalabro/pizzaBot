@@ -33,7 +33,7 @@ class _HomepageScreenState extends ConsumerState<HomepageScreen> {
         next.maybeWhen(
           loadInProgress: () {
             audioPlayer.open(
-              Audio("assets/audios/loading.mp3"),
+              Audio("assets/sounds/loading.mp3"),
               autoStart: true,
               showNotification: false,
               loopMode: LoopMode.playlist,
