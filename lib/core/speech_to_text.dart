@@ -1,6 +1,6 @@
-import 'package:chatbot/core/audio_player.dart';
-import 'package:chatbot/core/dio_provider.dart';
-import 'package:chatbot/core/text_to_speech.dart';
+import 'package:pizzabot/core/audio_player.dart';
+import 'package:pizzabot/core/dio_provider.dart';
+import 'package:pizzabot/core/text_to_speech.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:speech_to_text/speech_to_text.dart';

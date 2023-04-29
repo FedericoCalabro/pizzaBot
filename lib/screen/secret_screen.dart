@@ -1,5 +1,4 @@
-import 'package:chatbot/pizzabot/pizza_provider.dart';
-import 'package:chatbot/pizzabot/secret_manager.dart';
+import 'package:pizzabot/pizzabot/pizza_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

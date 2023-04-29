@@ -1,5 +1,5 @@
-import 'package:chatbot/core/custom_exception.dart';
-import 'package:chatbot/core/dio_provider.dart';
+import 'package:pizzabot/core/custom_exception.dart';
+import 'package:pizzabot/core/dio_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

@@ -1,8 +1,8 @@
-import 'package:chatbot/core/dio_provider.dart';
-import 'package:chatbot/pizzabot/pizza_notifier.dart';
-import 'package:chatbot/pizzabot/pizza_repository.dart';
-import 'package:chatbot/pizzabot/pizza_service.dart';
-import 'package:chatbot/pizzabot/secret_manager.dart';
+import 'package:pizzabot/core/dio_provider.dart';
+import 'package:pizzabot/pizzabot/pizza_notifier.dart';
+import 'package:pizzabot/pizzabot/pizza_repository.dart';
+import 'package:pizzabot/pizzabot/pizza_service.dart';
+import 'package:pizzabot/pizzabot/secret_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final secretManagerProvider = Provider(

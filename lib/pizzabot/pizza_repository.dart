@@ -1,6 +1,6 @@
-import 'package:chatbot/core/custom_exception.dart';
-import 'package:chatbot/pizzabot/pizza_service.dart';
-import 'package:chatbot/pizzabot/secret_manager.dart';
+import 'package:pizzabot/core/custom_exception.dart';
+import 'package:pizzabot/pizzabot/pizza_service.dart';
+import 'package:pizzabot/pizzabot/secret_manager.dart';
 import 'package:fpdart/fpdart.dart';
 
 class PizzaRepository {
