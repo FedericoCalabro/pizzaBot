@@ -14,7 +14,7 @@ class _SecretScreenState extends ConsumerState<SecretScreen> {
   late final TextEditingController _secretController = TextEditingController();
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       _secretController.text = await ref.read(secretManagerProvider).get();
