@@ -29,3 +29,7 @@ fvm flutter pub run build_runner watch --delete-conflicting-outputs
 ```bash
 fvm flutter clean && fvm flutter build apk
 ```
+
+```bash
+fvm flutter clean && fvm flutter build ipa --export-method development
+```
