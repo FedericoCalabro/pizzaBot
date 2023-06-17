@@ -14,15 +14,22 @@ class PizzaService {
 
     Map<String, dynamic> data = {
       "question": question,
-      "secret": secret,
     };
 
-    Map<String, dynamic> headers = {};
+    Map<String, dynamic> headers = {
+      "X-Secret": secret,
+      "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
+      "Origin": "https://www.pizzagpt.it",
+    };
 
     try {
       final response = await _dio.post(
         URL,
         data: data,
+        options: Options(
+          headers: headers,
+        ),
         cancelToken: globalCancelToken,
       );
       return response.data as Map<String, dynamic>;

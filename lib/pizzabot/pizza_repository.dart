@@ -14,14 +14,14 @@ class PizzaRepository {
 
   Future<Either<String, CustomException>> getAnswer(String question) async {
     try {
-      final ehflu = await _secretManager.hoursFromLastUpdate();
-      if (ehflu >= 6) {
-        final soe = await getSecret();
-        soe.fold(
-          (l) => _secretManager.set(l),
-          (r) => throw CustomException(r.errorMessage),
-        );
-      }
+      // final ehflu = await _secretManager.hoursFromLastUpdate();
+      // if (ehflu >= 6) {
+      //   final soe = await getSecret();
+      //   soe.fold(
+      //     (l) => _secretManager.set(l),
+      //     (r) => throw CustomException(r.errorMessage),
+      //   );
+      // }
 
       final response = await _pizzaService.getAnswer(question);
 
