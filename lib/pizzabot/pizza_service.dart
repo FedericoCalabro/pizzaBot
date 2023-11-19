@@ -9,7 +9,7 @@ class PizzaService {
   PizzaService(this._dio);
 
   Future<Map<String, dynamic>> getAnswer(String question) async {
-    const String URL = "https://www.pizzagpt.it/api/chat-completion";
+    const String URL = "https://www.pizzagpt.it/api/chatx-completion";
     final secret = (await SharedPreferences.getInstance()).getString("secret");
 
     Map<String, dynamic> data = {
@@ -34,8 +34,7 @@ class PizzaService {
       );
       return response.data as Map<String, dynamic>;
     } on DioError catch (e) {
-      if (e.type == DioErrorType.connectionTimeout ||
-          e.type == DioErrorType.connectionError) {
+      if (e.type == DioErrorType.connectionTimeout || e.type == DioErrorType.connectionError) {
         throw CustomException("Impossibile connettersi al server");
       }
       if (e.type == DioErrorType.cancel) {
@@ -58,8 +57,7 @@ class PizzaService {
 
       return response.data as String;
     } on DioError catch (e) {
-      if (e.type == DioErrorType.connectionTimeout ||
-          e.type == DioErrorType.connectionError) {
+      if (e.type == DioErrorType.connectionTimeout || e.type == DioErrorType.connectionError) {
         throw CustomException("Impossibile connettersi al server");
       }
       throw CustomException(e.message ?? "Errore di connessione");

@@ -71,11 +71,7 @@ class _HomepageScreenState extends ConsumerState<HomepageScreen> {
       body: SafeArea(
         child: LayoutBuilder(builder: (layoutContext, constraint) {
           return Column(
-            children: [
-              getMic(constraint, context),
-              getStop(constraint, context),
-              getInteractions(constraint)
-            ],
+            children: [getMic(constraint, context), getStop(constraint, context), getInteractions(constraint)],
           );
         }),
       ),
