@@ -30,7 +30,9 @@ class PizzaRepository {
         throw CustomException("Errore, probabilmente il secret è cambiato");
       }
 
-      return left(response['answer']['content']);
+      String answer = response['answer']['content'];
+      answer = answer.replaceAll(RegExp(r'\*'), ' ');
+      return left(answer);
     } on CustomException catch (e) {
       return right(e);
     }
