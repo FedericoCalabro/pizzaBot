@@ -25,12 +25,11 @@ class PizzaRepository {
 
       final response = await _pizzaService.getAnswer(question);
 
-      if (response['description'] == 'error' ||
-          response['answer'] == 'Invalid') {
+      if (response['refusal'] != null) {
         throw CustomException("Errore, probabilmente il secret è cambiato");
       }
 
-      String answer = response['answer']['content'];
+      String answer = response['content'];
       answer = answer.replaceAll(RegExp(r'\*'), ' ');
       return left(answer);
     } on CustomException catch (e) {
